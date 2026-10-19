@@ -595,7 +595,9 @@ function wrapH(x,text,maxW,lh){ return splitLines(x,text,maxW).length*lh; }
 function splitLines(x,text,maxW){ const out=[]; let cur=''; for(const ch of (text||'')){ if(x.measureText(cur+ch).width>maxW){ out.push(cur); cur=ch; } else cur+=ch; } out.push(cur); return out; }
 
 /* ============ 시작 ============ */
-if(!restore()) load('bultong_b'); else { render(); renderPresets(); }
+const _q=new URLSearchParams(location.search).get('case');
+if(_q && PRESETS.some(p=>p.id===_q)){ try{localStorage.removeItem('insta_practice');}catch(e){} load(_q); }
+else if(!restore()) load('bultong_b'); else { render(); renderPresets(); }
 </script>
 </body>
 </html>
